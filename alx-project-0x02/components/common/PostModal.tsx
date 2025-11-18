@@ -1,8 +1,14 @@
-import { type CardProps } from '@/interfaces/index'
+import { type PostModalProps } from '@/interfaces/index'
 
-const PostModal: React.FC<CardProps> = ({ title, content }) =>{
+const PostModal: React.FC<PostModalProps> = ({ title, content }) =>{
     return(
-        <div></div>
+        <form action="post">
+            <label htmlFor="">Title</label>
+            <input type="text" />
+            <label htmlFor="">content</label>
+            <input type="text" />
+            <button>add</button>
+        </form>
     )
 }
 

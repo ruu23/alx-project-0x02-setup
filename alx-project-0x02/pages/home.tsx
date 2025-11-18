@@ -1,4 +1,5 @@
 import Card from '@/components/common/Card'
+import PostModal from '@/components/common/PostModal';
 import Header from '@/components/layout/Header'
 const Home: React.FC = () =>{
     return(
@@ -19,6 +20,9 @@ const Home: React.FC = () =>{
                 title="Next.js & TypeScript" 
                 content="The component is strongly typed using the CardProps interface, ensuring type safety when passing data."
                 />
+            </div>
+            <div>
+                <PostModal />
             </div>
         </div>
     )
