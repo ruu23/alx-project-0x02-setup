@@ -1,19 +1,17 @@
 import { type PostModalProps } from '@/interfaces/index'
 import { useState } from 'react'
 
-const PostModal: React.FC<PostModalProps> = ({ onSubmit }) =>{
+const PostModal: React.FC<PostModalProps> = ({ onSubmit, onClose }) =>{
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     
     function addCard(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault()
         onSubmit({title, content})
+        onClose()
     };
     return(
         <div>
-            <h1 className='text-2xl font-bold mb-5 font-viaoda'>
-                Make your own Card 🪧
-            </h1>
             <form 
             className='border-2 border-[#FFD700] w-[20rem] h-[25rem] rounded p-5'
             onSubmit={addCard}>

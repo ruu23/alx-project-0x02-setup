@@ -5,6 +5,7 @@ export interface CardProps{
 
 export interface PostModalProps{
     onSubmit: (data: CardProps) => void
+    onClose: () => void
 }
 
 export type btnSize = 'small' | 'medium' | 'large';

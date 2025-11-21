@@ -6,12 +6,21 @@ import { useState } from 'react';
 
 const Home: React.FC = () =>{
     const [post, setPost] = useState<CardProps[]>([])
+    const [isModelOpen, setIsModelOpen] = useState(false)
 
     function handleAddPost({ title, content}: CardProps) {
         const newPost: CardProps = {title, content}
         setPost([...post, newPost])
+        setIsModelOpen(false)
     }
 
+    function closeModel() {
+        setIsModelOpen(false)
+    }
+
+    function OpenModel() {
+        setIsModelOpen(true)
+    }
 
     return(
         <div className="m-10">
@@ -47,10 +56,22 @@ const Home: React.FC = () =>{
                     ))}
                 </div>
             </div>
-            
-            <div className='mx-5'>
-                <PostModal onSubmit={handleAddPost} />
+
+            <div>
+                <h1 className='text-2xl font-bold mb-5 font-viaoda'>
+                    Make your own Card 🪧
+                </h1>
+                <button 
+                className='border rounded w-[5rem] h-[2rem] bg-[#FFD700] text-xl font-bold font-viaoda'
+                onClick={OpenModel}
+                type="submit">
+                    add card
+                </button>
             </div>
+            
+            {isModelOpen && <div className='mx-50'>
+                <PostModal onSubmit={handleAddPost} onClose={closeModel} />
+            </div>}
 
         </div>
     )
