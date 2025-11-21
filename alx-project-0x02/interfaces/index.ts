@@ -8,13 +8,10 @@ export interface PostModalProps{
     onClose: () => void
 }
 
-export type btnSize = 'small' | 'medium' | 'large';
-
-export type  btnShape = 'rounded-sm' | 'rounded-md' | 'rounded-full';
-
 export interface ButtonProps{
-    size?: btnSize;
-    shape?: btnShape;
+    size: 'small' | 'medium' | 'large';
+    shape: 'rounded-sm' | 'rounded-md' | 'rounded-full';
+    children: React.ReactNode
 }
 
 export interface PostProps{
