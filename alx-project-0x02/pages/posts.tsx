@@ -1,18 +1,44 @@
 import { PostProps } from "@/interfaces";
 import Header from '@/components/layout/Header'
+import { useEffect, useState } from "react";
+import PostCard from "@/components/common/PostCard";
 
-const PostCard: React.FC<PostProps> = ({ title, content, userId }) => {
-    async function fetchData() {
-        const res = await fetch("https://api.example.com")
-        const data = await res.json()
-    }
+const Post: React.FC<PostProps> = () => {
+    const [posts, setPosts]= useState<PostProps[]>([])
+    useEffect(() => {
+        async function fetchPosts() {
+            const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+            const data: {
+            userId: number;
+            id: number;
+            title: string;
+            body: string;
+            }[] = await res.json();
+
+            const formatted: PostProps[] = data.map((post) => ({
+            id: post.id,
+            title: post.title,
+            content: post.body,
+            userId: post.userId,
+            }));
+
+            setPosts(formatted);
+        }
+
+        fetchPosts();
+        }, []);
+
     return(
-        <div className="m-10">
+        <div className="m-10 ">
             <Header />
-            <h1>{title}</h1>
-            <p>{content}</p>
+            <div className="p-8 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {posts.map((post) => (
+                    <PostCard 
+                    key={post.id} title={post.title} content={post.content} userId={post.userId} id={post.id}/>
+                ))}
+            </div>
         </div>
     );
 }
 
-export default PostCard;
+export default Post;

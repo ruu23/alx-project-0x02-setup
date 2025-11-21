@@ -1,13 +1,11 @@
 import { PostProps } from "@/interfaces";
 
 const PostCard: React.FC<PostProps> = ({ title, content, userId }) => {
-    async function fetchData() {
-        const res = await fetch('api@example.com');
-        const data = await res.json();
-    }
     return(
-        <div>
-            
+        <div className="m-10 bg-[#fdf2ef]">
+            <h2 className="text-2xl font-bold font-viaoda">{title}</h2>
+            <p>{content}</p>
+            <span>User ID: {userId}</span>
         </div>
     )
 }
