@@ -6,21 +6,6 @@ interface PostsPageProps {
   posts: PostProps[];
 }
 
-export const getStaticProps = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-  const data = await res.json();
-
-  const posts: PostProps[] = data.map((post: { id: number; title: string; body: string; userId: number }) => ({
-  id: post.id,
-  title: post.title,
-  content: post.body,
-  userId: post.userId,
-}));
-
-
-  return { props: { posts } };
-};
-
 const Posts: React.FC<PostsPageProps> = ({ posts }) => {
   return (
     <div className="m-10">
@@ -31,7 +16,7 @@ const Posts: React.FC<PostsPageProps> = ({ posts }) => {
             key={post.id}
             id={post.id}
             title={post.title}
-            content={post.content}
+            body={post.body}
             userId={post.userId}
           />
         ))}
@@ -41,3 +26,15 @@ const Posts: React.FC<PostsPageProps> = ({ posts }) => {
 };
 
 export default Posts;
+
+export const getStaticProps = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const posts = await res.json();
+
+  return { 
+    props: 
+    { 
+      posts, 
+    }, 
+  };
+};
