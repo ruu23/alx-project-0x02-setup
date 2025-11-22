@@ -10,12 +10,13 @@ export const getStaticProps = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const data = await res.json();
 
-  const posts: PostProps[] = data.map((post: any) => ({
-    id: post.id,
-    title: post.title,
-    content: post.body,
-    userId: post.userId,
-  }));
+  const posts: PostProps[] = data.map((post: { id: number; title: string; body: string; userId: number }) => ({
+  id: post.id,
+  title: post.title,
+  content: post.body,
+  userId: post.userId,
+}));
+
 
   return { props: { posts } };
 };

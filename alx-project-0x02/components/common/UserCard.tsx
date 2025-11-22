@@ -1,13 +1,11 @@
 import { UserProps } from "@/interfaces";
 
 const UserCard: React.FC<UserProps> = ({ name, email, address }) => {
-    async function fetchData() {
-        const res = await fetch('https://api.example.com')
-        const data = await res.json()
-    }
     return(
-        <div>
-            
+        <div className="m-10 bg-[#fdf2ef]">
+            <h1 className="text-2xl font-bold font-viaoda">{name}</h1>
+            <p>{email}</p>
+            <p>{address.city}, {address.street}</p>
         </div>
     );
 }

@@ -22,7 +22,11 @@ export interface PostProps{
 }
 
 export interface UserProps{
+    id: number
     name: string; 
     email: string; 
-    address: string;
+    address: {
+        city: string;
+        street: string;
+    }
 }
